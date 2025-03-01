@@ -1,0 +1,126 @@
+:host {
+  display: block;
+  width: 100%;
+
+  .main-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 16px;
+  }
+
+  p-panelMenu {
+    font-size: 14px;
+  }
+
+  .mobile-panel {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 0 15px;
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  .menu-container {
+    background: #fff;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 16px;
+    padding: 35px 15px 15px;
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100%;
+    z-index: 1001;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(.05, .74, .2, .99), opacity 0.4s;
+
+    .logo {
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      gap: 12px;
+      flex-wrap: nowrap;
+      padding: 8px 12px 8px 8px;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      cursor: pointer;
+      color: #454545;
+
+      .project-icon-wrapper {
+        border-radius: 6px;
+        background: #22c55e;
+        color: #fff;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .project-name {
+        font-size: 13px;
+        font-weight: 600;
+        margin: 0;
+      }
+    }
+
+    &.is-active {
+      left: 0;
+      opacity: 1;
+    }
+
+    @media screen and (min-width: 768px) {
+      width: 100%;
+      padding: 0;
+      height: auto;
+      position: static;
+      z-index: auto;
+      opacity: 1;
+    }
+  }
+
+  .back-drop {
+    background: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+
+    &.is-active {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media screen and (min-width: 768px) {
+      display: none;
+      &.is-active {
+        display: none;
+      }
+    }
+  }
+
+  .menu-close {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 3px;
+    top: 0;
+    z-index: 10;
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
+}

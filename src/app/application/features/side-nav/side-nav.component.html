@@ -1,0 +1,16 @@
+<div class="main-nav">
+  <div class="mobile-panel">
+    <p-button icon="pi pi-bars" (onClick)="menuIsOpen =! menuIsOpen"/>
+  </div>
+  <div class="menu-container" [ngClass]="menuIsOpen ? 'is-active' : ''">
+    <div class="logo">
+      <div class="project-icon-wrapper">
+        <i class="pi pi-spin pi-home"></i>
+      </div>
+      <p class="project-name">Shop Co</p>
+    </div>
+    <p-button class="menu-close" icon="pi pi-times" severity="secondary" [rounded]="true" [text]="true" (onClick)="menuIsOpen = false"/>
+    <p-panelMenu [model]="navList" [multiple]="true"/>
+  </div>
+  <div class="back-drop" [ngClass]="menuIsOpen ? 'is-active' : ''" (click)="menuIsOpen = false"></div>
+</div>
