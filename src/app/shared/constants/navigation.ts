@@ -21,6 +21,11 @@ export const navigation: Array<MenuItem> = [
         icon: 'pi pi-list',
         routerLink: '/user-list',
       },
+      {
+        label: 'Admin list',
+        icon: 'pi pi-list',
+        routerLink: '/admin-list',
+      },
     ]
   },
 ]

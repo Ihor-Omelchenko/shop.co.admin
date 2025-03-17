@@ -3,6 +3,7 @@
   "compilerOptions": {
     "paths": {
       "@app/*": ["src/app/*"],
+      "@libs/*": ["src/libs/*"],
       "@commands/*": ["src/commands/*"],
       "@data/*": ["src/data/*"],
       "@pages/*": ["src/pages/*"],

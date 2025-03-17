@@ -1,10 +1,11 @@
-import { ProductListComponent, UserListComponent } from '@app/application/pages';
+import { AdminListComponent, LoginComponent, ProductListComponent, UserListComponent } from '@app/application/pages';
+import { authGuard } from '@app/application/providers/guards/auth.guard';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '',
+    redirectTo: 'product-list',
     pathMatch: 'full'
   },
   {
@@ -12,7 +13,15 @@ export const routes: Routes = [
     component: ProductListComponent
   },
   {
+    path: 'admin-list',
+    component: AdminListComponent
+  },
+  {
     path: 'user-list',
     component: UserListComponent
   },
+  {
+    path: 'login',
+    component: LoginComponent
+  }
 ];

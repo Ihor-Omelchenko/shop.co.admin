@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { navigation } from '@shared/constants';
-import { PanelMenu } from 'primeng/panelmenu';
+import { navigation, PrimengModules } from '@shared/constants';
 import { NgClass } from '@angular/common';
-import { Button } from 'primeng/button';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -10,7 +8,7 @@ import { MenuItem } from 'primeng/api';
   standalone: true,
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.scss',
-  imports: [ Button, PanelMenu, NgClass ],
+  imports: [ NgClass, PrimengModules ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SideNavComponent {

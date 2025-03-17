@@ -1,0 +1,71 @@
+<p-table [columns]="selectedColumnsState()"
+         [ngStyle]="{'min-width': '60rem'}"
+         [loading]="loading()"
+         [value]="dataList()"
+         stripedRows
+
+         (onPage)="onPageChange($event)"
+>
+
+  <ng-template pTemplate="caption">
+    <div class="caption">
+      <p-multiSelect [ngModel]="selectedColumnsState()"
+                     [style]="{'min-width': '250px'}"
+                     [options]="columns()"
+
+                     selectedItemsLabel="{0} columns selected"
+                     placeholder="Choose Columns"
+                     optionLabel="name"
+                     size="small"
+
+                     (onChange)="onSelectChange($event)"
+      />
+
+      <p-button class="create-button"
+                label="New Admin"
+                icon="pi pi-plus"
+                size="small"
+
+                (onClick)="addNewAdmin()"
+      />
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      @for (col of columns; track $index) {
+        <th>{{ col.name }}</th>
+      }
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+    <tr [pSelectableRow]="rowData">
+      @for (col of columns; track $index) {
+        <td class="no-wrap">
+          @if (col.field === 'role') {
+            <p-tag  [severity]="roleSeverity(rowData[col.field])"
+                    [value]="rowData[col.field]"
+            />
+          } @else {
+            {{ rowData[col.field] }}
+          }
+        </td>
+      }
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="100" class="text-center">No Data</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-paginator [rowsPerPageOptions]="[5, 10, 20, 30]"
+             [totalRecords]="totalRecords()"
+             [first]="page() * limit()"
+             [rows]="limit()"
+
+             (onPageChange)="onPageChange($event)"
+/>

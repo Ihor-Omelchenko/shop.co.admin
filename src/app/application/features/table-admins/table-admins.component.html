@@ -1,0 +1,10 @@
+<app-table [totalRecords]="repository.totalRecords()"
+           [limit]="repository.pagination().limit"
+           [page]="repository.pagination().page"
+           [dataList]="repository.adminList()"
+           [loading]="repository.loading()"
+           [columns]="AdminTableColumns"
+
+           (pageSetting)="handlePageSetting($event)"
+           (createNewUser)="handleCreateAdmin()"
+/>
