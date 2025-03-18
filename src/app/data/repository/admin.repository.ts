@@ -4,7 +4,7 @@ import { Pagination } from '@shared/type';
 
 @Injectable({providedIn: 'root'})
 export class AdminRepository {
-  pagination: WritableSignal<Pagination> = signal({page: 0, limit: 5});
+  pagination: WritableSignal<Pagination> = signal({page: 0, limit: 15});
   adminList: WritableSignal<Array<AdminEntity>> = signal([]);
   totalRecords: WritableSignal<number> = signal(0);
   loading: WritableSignal<boolean> = signal(false);

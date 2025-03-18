@@ -1,12 +1,13 @@
 import { TableAdminsComponent } from '@features/table-admins';
 import { Component } from '@angular/core';
+import { Card } from 'primeng/card';
 
 @Component({
   selector: 'app-admin-list',
   standalone: true,
   templateUrl: './admin-list.component.html',
   styleUrl: './admin-list.component.scss',
-  imports: [ TableAdminsComponent ]
+  imports: [ TableAdminsComponent, Card ]
 })
 export class AdminListComponent {
 

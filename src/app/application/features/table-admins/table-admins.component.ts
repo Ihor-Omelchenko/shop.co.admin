@@ -1,5 +1,5 @@
+import { AdminTableColumns, PrimengModules } from '@shared/constants';
 import { AdminRepository } from '@app/data/repository';
-import { AdminTableColumns } from '@shared/constants';
 import { AdminListCommand } from '@app/data/commands';
 import { TableComponent } from '@components/table';
 import { Component, inject } from '@angular/core';
@@ -10,7 +10,7 @@ import { AdminTableColumn } from '@shared/type';
   standalone: true,
   templateUrl: './table-admins.component.html',
   styleUrl: './table-admins.component.scss',
-  imports: [ TableComponent ],
+  imports: [ TableComponent, PrimengModules ],
   providers: [ AdminListCommand ]
 })
 export class TableAdminsComponent {

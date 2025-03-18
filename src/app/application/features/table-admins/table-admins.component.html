@@ -1,10 +1,15 @@
-<app-table [totalRecords]="repository.totalRecords()"
-           [limit]="repository.pagination().limit"
-           [page]="repository.pagination().page"
-           [dataList]="repository.adminList()"
-           [loading]="repository.loading()"
-           [columns]="AdminTableColumns"
+<div class="table-container">
+  <h2 style="  color: #334155; margin: 0">List of administrators</h2>
+  <p-divider />
+  <app-table [totalRecords]="repository.totalRecords()"
+             [limit]="repository.pagination().limit"
+             [page]="repository.pagination().page"
+             [dataList]="repository.adminList()"
+             [loading]="repository.loading()"
+             [columns]="AdminTableColumns"
 
-           (pageSetting)="handlePageSetting($event)"
-           (createNewUser)="handleCreateAdmin()"
-/>
+             (pageSetting)="handlePageSetting($event)"
+             (createNewUser)="handleCreateAdmin()"
+  />
+</div>
+

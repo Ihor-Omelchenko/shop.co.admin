@@ -2,35 +2,30 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  min-height: 100vh;
+  max-height: 100vh;
   box-sizing: border-box;
 
   .side-nav {
-    min-width: 240px;
+    padding: 10px;
     box-sizing: border-box;
     position: relative;
-    border-right: 1px solid #dfe7ef;
   }
 
   .content {
-    border: 1px solid #dfe7ef;
-    border-left: 0;
-    border-radius: 4px;
     flex: 1;
-    background: #eff3f8;
-    width: calc(100% - (185px + 65px));
-
-    .wrapper {
-      box-sizing: border-box;
-      margin: 20px;
-      border-radius: 4px;
-    }
+    height: calc(100vh - 0.8rem);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
+
 }
 
 @media only screen and (max-width: 767px) {
   .main {
     flex-direction: column;
+    max-height: none;
 
     .content {
       width: 100%;

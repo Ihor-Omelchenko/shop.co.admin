@@ -4,7 +4,12 @@ import { InputText } from 'primeng/inputtext';
 import { PanelMenu } from 'primeng/panelmenu';
 import { Paginator } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
+import { Toolbar } from 'primeng/toolbar';
+import { Tooltip } from 'primeng/tooltip';
+import { Divider } from 'primeng/divider';
 import { NgModule } from '@angular/core';
+import { Ripple } from 'primeng/ripple';
+import { Avatar } from 'primeng/avatar';
 import { Toast } from 'primeng/toast';
 import { Card } from 'primeng/card';
 import { Tag } from 'primeng/tag';
@@ -17,7 +22,12 @@ import { Tag } from 'primeng/tag';
     InputText,
     PanelMenu,
     Paginator,
+    Divider,
+    Toolbar,
+    Tooltip,
     Button,
+    Ripple,
+    Avatar,
     Toast,
     Card,
     Tag
@@ -29,7 +39,12 @@ import { Tag } from 'primeng/tag';
     InputText,
     PanelMenu,
     Paginator,
+    Divider,
+    Toolbar,
+    Tooltip,
     Button,
+    Ripple,
+    Avatar,
     Toast,
     Card,
     Tag

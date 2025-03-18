@@ -1,22 +1,24 @@
 import { Component, effect, input, InputSignal, output, OutputEmitterRef, signal, WritableSignal } from '@angular/core';
 import { MultiSelectChangeEvent } from 'primeng/multiselect';
-import { PrimengModules } from '@shared/constants';
+import { PrimengModules, roleList } from '@shared/constants';
 import { PaginatorState } from 'primeng/paginator';
 import { AdminEntity } from '@app/data/entities';
 import { AdminTableColumn } from '@shared/type';
 import { FormsModule } from '@angular/forms';
 import { RoleSeverity } from '@shared/utils';
 import { NgStyle } from '@angular/common';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-table',
   standalone: true,
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
-  imports: [ FormsModule, NgStyle, PrimengModules ]
+  imports: [ FormsModule, NgStyle, PrimengModules, DropdownModule ]
 })
 export class TableComponent {
   protected readonly roleSeverity = RoleSeverity;
+  protected readonly roleList = roleList;
 
   pageSetting: OutputEmitterRef<{ first: number; rows: number }> = output<{ first: number; rows: number }>()
   createNewUser: OutputEmitterRef<void> = output();

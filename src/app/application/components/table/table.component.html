@@ -1,14 +1,23 @@
-<p-table [columns]="selectedColumnsState()"
-         [ngStyle]="{'min-width': '60rem'}"
+<p-table [ngStyle]="{'width': '100%', 'height': 'calc(100% - 120px)', 'display': 'block'}"
+         [columns]="selectedColumnsState()"
          [loading]="loading()"
          [value]="dataList()"
          stripedRows
-
+         [scrollable]="true"
+         scrollHeight="flex"
          (onPage)="onPageChange($event)"
 >
 
   <ng-template pTemplate="caption">
     <div class="caption">
+      <p-dropdown [style]="{'min-width': '250px', 'height': '33px', 'font-size': '0.875rem', 'display': 'flex', 'align-items': 'center'}"
+                  [options]="roleList"
+                  [ngModel]="{role: 'all'}"
+
+                  placeholder="Selected role"
+                  optionLabel="role"
+      />
+
       <p-multiSelect [ngModel]="selectedColumnsState()"
                      [style]="{'min-width': '250px'}"
                      [options]="columns()"
@@ -44,8 +53,8 @@
       @for (col of columns; track $index) {
         <td class="no-wrap">
           @if (col.field === 'role') {
-            <p-tag  [severity]="roleSeverity(rowData[col.field])"
-                    [value]="rowData[col.field]"
+            <p-tag [severity]="roleSeverity(rowData[col.field])"
+                   [value]="rowData[col.field]"
             />
           } @else {
             {{ rowData[col.field] }}
@@ -62,7 +71,7 @@
   </ng-template>
 </p-table>
 
-<p-paginator [rowsPerPageOptions]="[5, 10, 20, 30]"
+<p-paginator [rowsPerPageOptions]="[5, 10, 15, 20, 30]"
              [totalRecords]="totalRecords()"
              [first]="page() * limit()"
              [rows]="limit()"

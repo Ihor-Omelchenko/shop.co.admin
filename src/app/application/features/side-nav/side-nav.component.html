@@ -1,16 +1,35 @@
-<div class="main-nav">
-  <div class="mobile-panel">
-    <p-button icon="pi pi-bars" (onClick)="menuIsOpen =! menuIsOpen"/>
-  </div>
-  <div class="menu-container" [ngClass]="menuIsOpen ? 'is-active' : ''">
-    <div class="logo">
-      <div class="project-icon-wrapper">
-        <i class="pi pi-spin pi-home"></i>
+<div class="card">
+  <p-toolbar>
+
+    <ng-template #start>
+      <div class="nav-items">
+        <a pButton pRipple class="logo">
+          <i class="pi pi-prime"></i>
+        </a>
+        <a pButton pRipple [routerLink]="'/dashboard'" routerLinkActive="active" pTooltip="Оverview"
+           tooltipPosition="right" class="nav-btn">
+          <i class="pi pi-home"></i>
+        </a>
+        <a pButton pRipple [routerLink]="'/product-list'" routerLinkActive="active" pTooltip="List of products"
+           tooltipPosition="right" class="nav-btn">
+          <i class="pi pi-list"></i>
+        </a>
+        <a pButton pRipple [routerLink]="'/user-list'" routerLinkActive="active" pTooltip="List of users"
+           tooltipPosition="right" class="nav-btn">
+          <i class="pi pi-users"></i>
+        </a>
+        <a pButton pRipple [routerLink]="'/admin-list'" routerLinkActive="active" pTooltip="List of administrators"
+           tooltipPosition="right" class="nav-btn">
+          <i class="pi pi-inbox"></i>
+        </a>
       </div>
-      <p class="project-name">Shop Co</p>
-    </div>
-    <p-button class="menu-close" icon="pi pi-times" severity="secondary" [rounded]="true" [text]="true" (onClick)="menuIsOpen = false"/>
-    <p-panelMenu [model]="navList" [multiple]="true"/>
-  </div>
-  <div class="back-drop" [ngClass]="menuIsOpen ? 'is-active' : ''" (click)="menuIsOpen = false"></div>
+    </ng-template>
+
+    <ng-template #end>
+      <div class="nav-items">
+        <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png" shape="circle"></p-avatar>
+      </div>
+    </ng-template>
+
+  </p-toolbar>
 </div>
