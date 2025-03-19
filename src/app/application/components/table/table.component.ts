@@ -2,12 +2,12 @@ import { Component, effect, input, InputSignal, output, OutputEmitterRef, signal
 import { MultiSelectChangeEvent } from 'primeng/multiselect';
 import { PrimengModules, roleList } from '@shared/constants';
 import { PaginatorState } from 'primeng/paginator';
+import { DropdownModule } from 'primeng/dropdown';
 import { AdminEntity } from '@app/data/entities';
 import { AdminTableColumn } from '@shared/type';
 import { FormsModule } from '@angular/forms';
 import { RoleSeverity } from '@shared/utils';
 import { NgStyle } from '@angular/common';
-import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-table',
@@ -21,7 +21,7 @@ export class TableComponent {
   protected readonly roleList = roleList;
 
   pageSetting: OutputEmitterRef<{ first: number; rows: number }> = output<{ first: number; rows: number }>()
-  createNewUser: OutputEmitterRef<void> = output();
+  createNewAdmin: OutputEmitterRef<void> = output();
 
   columns: InputSignal<Array<AdminTableColumn>> = input.required();
   dataList: InputSignal<Array<AdminEntity>> = input.required();
@@ -49,7 +49,7 @@ export class TableComponent {
   }
 
   addNewAdmin(): void {
-    this.createNewUser.emit();
+    this.createNewAdmin.emit();
   }
 
   onPageChange(event: PaginatorState): void {

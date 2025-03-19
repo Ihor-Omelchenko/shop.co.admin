@@ -3,6 +3,7 @@ import { AdminRepository } from '@app/data/repository';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '@libs/environments';
 import { AdminMapper } from '@app/data/mappers';
+import { Pagination } from '@shared/type';
 import { AdminDto } from '@app/data/dto';
 import { finalize, tap } from 'rxjs';
 
@@ -20,12 +21,13 @@ export class AdminListCommand {
   private readonly repository: AdminRepository = inject(AdminRepository);
   private readonly http: HttpClient = inject(HttpClient);
 
-  execute(params: { page: number; limit: number }): void {
+  execute(): void {
     this.repository.loading.set(true);
+    const pagination: Pagination = this.repository.pagination()
 
     const httpParams: HttpParams = new HttpParams()
-      .set('page', params.page + 1)
-      .set('limit', params.limit)
+      .set('page', pagination.page + 1)
+      .set('limit', pagination.limit)
 
     this.http.get<AdminList>(this.apiUrl, { params: httpParams })
       .pipe(

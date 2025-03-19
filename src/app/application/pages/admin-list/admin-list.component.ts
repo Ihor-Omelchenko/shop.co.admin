@@ -1,6 +1,7 @@
-import { TableAdminsComponent } from '@features/table-admins';
+import { TableAdminsComponent } from '@app/application/features';
 import { Component } from '@angular/core';
 import { Card } from 'primeng/card';
+
 
 @Component({
   selector: 'app-admin-list',

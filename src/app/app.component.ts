@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { LayoutWrapperComponent } from '@widgets/layout-wrapper';
+import { LayoutWrapperComponent } from '@app/application/widgets';
 import { RouterOutlet } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Toast } from 'primeng/toast';
@@ -8,7 +8,7 @@ import { Toast } from 'primeng/toast';
   selector: 'app-root',
   standalone: true,
   template: '<p-toast/><app-layout-wrapper><router-outlet/></app-layout-wrapper>',
-  imports: [ RouterOutlet, LayoutWrapperComponent, LayoutWrapperComponent, Toast ],
+  imports: [ RouterOutlet, LayoutWrapperComponent, Toast ],
   providers: [MessageService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -11,3 +11,9 @@
 ::ng-deep .p-datatable-header {
   padding: 0.75rem 0 !important;
 }
+
+p-paginator {
+  ::ng-deep .p-overlay {
+    transform: translateY(-245px);
+  }
+}

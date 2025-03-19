@@ -1,5 +1,5 @@
 <div class="table-container">
-  <h2 style="  color: #334155; margin: 0">List of administrators</h2>
+  <h2 class="title">List of administrators</h2>
   <p-divider />
   <app-table [totalRecords]="repository.totalRecords()"
              [limit]="repository.pagination().limit"
@@ -9,7 +9,7 @@
              [columns]="AdminTableColumns"
 
              (pageSetting)="handlePageSetting($event)"
-             (createNewUser)="handleCreateAdmin()"
+             (createNewAdmin)="handleCreateAdmin()"
   />
 </div>
 

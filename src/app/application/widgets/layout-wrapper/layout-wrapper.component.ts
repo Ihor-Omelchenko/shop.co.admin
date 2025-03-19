@@ -1,4 +1,4 @@
-import { SideNavComponent } from '@features/side-nav';
+import { SideNavComponent } from '@app/application/features';
 import { Component } from '@angular/core';
 
 @Component({

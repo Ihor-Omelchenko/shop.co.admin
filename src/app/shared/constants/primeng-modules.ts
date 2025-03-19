@@ -4,6 +4,7 @@ import { InputText } from 'primeng/inputtext';
 import { PanelMenu } from 'primeng/panelmenu';
 import { Paginator } from 'primeng/paginator';
 import { TableModule } from 'primeng/table';
+import { Password } from 'primeng/password';
 import { Toolbar } from 'primeng/toolbar';
 import { Tooltip } from 'primeng/tooltip';
 import { Divider } from 'primeng/divider';
@@ -22,6 +23,8 @@ import { Tag } from 'primeng/tag';
     InputText,
     PanelMenu,
     Paginator,
+    InputText,
+    Password,
     Divider,
     Toolbar,
     Tooltip,
@@ -39,6 +42,8 @@ import { Tag } from 'primeng/tag';
     InputText,
     PanelMenu,
     Paginator,
+    InputText,
+    Password,
     Divider,
     Toolbar,
     Tooltip,
