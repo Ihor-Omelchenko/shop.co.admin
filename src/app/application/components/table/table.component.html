@@ -16,6 +16,8 @@
 
                   placeholder="Selected role"
                   optionLabel="role"
+
+                  (onChange)="onSelectRoleChange($event)"
       />
 
       <p-multiSelect [ngModel]="selectedColumnsState()"
@@ -45,6 +47,7 @@
       @for (col of columns; track $index) {
         <th>{{ col.name }}</th>
       }
+      <th></th>
     </tr>
   </ng-template>
 
@@ -61,6 +64,10 @@
           }
         </td>
       }
+      <td class="actions">
+        <p-button icon="pi pi-pencil" [rounded]="true" severity="secondary" [outlined]="true"/>
+        <p-button icon="pi pi-trash" [rounded]="true" severity="danger" [outlined]="true" (click)="removeAdminById(rowData.id)" />
+      </td>
     </tr>
   </ng-template>
 

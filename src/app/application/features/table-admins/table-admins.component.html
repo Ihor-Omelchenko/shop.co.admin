@@ -9,6 +9,8 @@
              [columns]="AdminTableColumns"
 
              (pageSetting)="handlePageSetting($event)"
+             (removeAdmin)="handleRemoveAdmin($event)"
+             (selectRole)="handleSelectRole($event)"
              (createNewAdmin)="handleCreateAdmin()"
   />
 </div>

@@ -1,10 +1,11 @@
+import { AdminCreateCommand, AdminListCommand, AdminRemoveCommand } from '@app/data/commands';
 import { DialogCreateAdminComponent, TableComponent } from '@app/application/components';
-import { AdminCreateCommand, AdminListCommand } from '@app/data/commands';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminTableColumns, PrimengModules } from '@shared/constants';
 import { AdminRepository } from '@app/data/repository';
 import { Component, inject } from '@angular/core';
 import { AdminTableColumn } from '@shared/type';
+
 
 @Component({
   selector: 'app-table-admins',
@@ -12,9 +13,10 @@ import { AdminTableColumn } from '@shared/type';
   templateUrl: './table-admins.component.html',
   styleUrl: './table-admins.component.scss',
   imports: [ TableComponent, PrimengModules ],
-  providers: [ AdminListCommand, AdminCreateCommand, DialogService ]
+  providers: [ AdminListCommand, AdminCreateCommand, AdminRemoveCommand, DialogService ]
 })
 export class TableAdminsComponent {
+  private readonly adminRemoveCommand: AdminRemoveCommand = inject(AdminRemoveCommand);
   private readonly adminCreateCommand: AdminCreateCommand = inject(AdminCreateCommand);
   private readonly adminListCommand: AdminListCommand = inject(AdminListCommand);
 
@@ -46,5 +48,14 @@ export class TableAdminsComponent {
         this.adminCreateCommand.execute(data);
       }
     });
+  }
+
+  handleRemoveAdmin(event: {id: string}): void {
+    this.adminRemoveCommand.execute(event)
+  }
+
+  handleSelectRole(event: {role: string}): void {
+    this.repository.selectRole.set(event.role);
+    this.adminListCommand.execute();
   }
 }

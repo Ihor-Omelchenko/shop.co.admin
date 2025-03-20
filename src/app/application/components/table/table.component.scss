@@ -8,6 +8,11 @@
   }
 }
 
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
 ::ng-deep .p-datatable-header {
   padding: 0.75rem 0 !important;
 }

@@ -6,6 +6,7 @@ import { Pagination } from '@shared/type';
 export class AdminRepository {
   pagination: WritableSignal<Pagination> = signal({page: 0, limit: 15});
   adminList: WritableSignal<Array<AdminEntity>> = signal([]);
+  selectRole: WritableSignal<string> = signal('all');
   totalRecords: WritableSignal<number> = signal(0);
   loading: WritableSignal<boolean> = signal(false);
 }

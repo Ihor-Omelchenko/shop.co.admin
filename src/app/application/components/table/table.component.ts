@@ -1,8 +1,8 @@
 import { Component, effect, input, InputSignal, output, OutputEmitterRef, signal, WritableSignal } from '@angular/core';
+import { DropdownChangeEvent, DropdownModule } from 'primeng/dropdown';
 import { MultiSelectChangeEvent } from 'primeng/multiselect';
 import { PrimengModules, roleList } from '@shared/constants';
 import { PaginatorState } from 'primeng/paginator';
-import { DropdownModule } from 'primeng/dropdown';
 import { AdminEntity } from '@app/data/entities';
 import { AdminTableColumn } from '@shared/type';
 import { FormsModule } from '@angular/forms';
@@ -21,6 +21,8 @@ export class TableComponent {
   protected readonly roleList = roleList;
 
   pageSetting: OutputEmitterRef<{ first: number; rows: number }> = output<{ first: number; rows: number }>()
+  selectRole: OutputEmitterRef<{role: string}> = output();
+  removeAdmin: OutputEmitterRef<{id: string}> = output();
   createNewAdmin: OutputEmitterRef<void> = output();
 
   columns: InputSignal<Array<AdminTableColumn>> = input.required();
@@ -48,8 +50,16 @@ export class TableComponent {
     this.selectedColumnsState.set(sortedColumns);
   }
 
+  onSelectRoleChange(event: DropdownChangeEvent): void {
+    this.selectRole.emit(event.value)
+  }
+
   addNewAdmin(): void {
     this.createNewAdmin.emit();
+  }
+
+  removeAdminById(adminId: string): void {
+    this.removeAdmin.emit({id: adminId});
   }
 
   onPageChange(event: PaginatorState): void {

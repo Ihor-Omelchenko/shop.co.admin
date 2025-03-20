@@ -25,11 +25,13 @@ export class AdminListCommand {
     this.repository.loading.set(true);
     const pagination: Pagination = this.repository.pagination()
 
-    const httpParams: HttpParams = new HttpParams()
-      .set('page', pagination.page + 1)
-      .set('limit', pagination.limit)
+    const httpParams = new HttpParams({ fromObject: {
+        page: pagination.page + 1,
+        limit: pagination.limit,
+        ...(this.repository.selectRole() !== 'all' && { role: this.repository.selectRole() })
+      }});
 
-    this.http.get<AdminList>(this.apiUrl, { params: httpParams })
+    this.http.get<AdminList>(this.apiUrl, {params: httpParams})
       .pipe(
         tap((response: AdminList): void => {
           this.repository.totalRecords.set(response.totalUsers);
