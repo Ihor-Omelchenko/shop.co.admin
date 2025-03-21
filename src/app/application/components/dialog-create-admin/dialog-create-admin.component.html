@@ -1,16 +1,16 @@
 <div>
-  <div class="flex lg:justify-content-between align-items-center items-center gap-6 mb-3">
-    <label for="username" class="font-semibold w-24 text-right">Username</label>
-    <input pInputText [(ngModel)]="userData.username" id="username" class="w-full max-w-15rem" autocomplete="off"/>
+  <div class="flex lg:justify-content-between align-items-center items-center mb-3">
+    <label for="username" class="font-semibold text-right">Admin name</label>
+    <input pInputText [(ngModel)]="adminData.adminName" id="username" class="w-full max-w-15rem" autocomplete="off"/>
   </div>
 
-  <div class="flex lg:justify-content-between align-items-center items-center gap-6 mb-3">
-    <label for="password" class="font-semibold w-24 text-right">Password</label>
-    <p-password id="password" class="w-full max-w-15rem" [(ngModel)]="userData.password" [toggleMask]="true" />
+  <div class="flex lg:justify-content-between align-items-center items-center mb-3">
+    <label for="password" class="font-semibold text-right">Password</label>
+    <p-password id="password" class="w-full max-w-15rem" [(ngModel)]="adminData.password" [toggleMask]="true" />
   </div>
 
   <div class="flex justify-content-end gap-2">
     <p-button label="Cancel" severity="secondary" class="w-24" (click)="closeDialog()"/>
-    <p-button label="Save" severity="primary" class="w-24" [disabled]="!userData.username || !userData.password" (click)="submitForm()"/>
+    <p-button label="Save" severity="primary" class="w-24" [disabled]="!adminData.adminName || !adminData.password" (click)="submitForm()"/>
   </div>
 </div>

@@ -13,10 +13,10 @@ import { FormsModule } from '@angular/forms';
 export class DialogCreateAdminComponent {
   private readonly ref: DynamicDialogRef = inject(DynamicDialogRef);
 
-  protected readonly userData = {username: '', password: ''};
+  protected readonly adminData = {adminName: '', password: ''};
 
   submitForm(): void {
-    this.ref.close(this.userData);
+    this.ref.close(this.adminData);
   }
 
   closeDialog(): void {

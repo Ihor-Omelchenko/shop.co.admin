@@ -6,7 +6,7 @@ import { MessageService } from 'primeng/api';
 import { role } from '@shared/type';
 
 type AdminCreateResponse = {
-  userId: string;
+  adminId: string;
   message: string;
   role: role;
 }
@@ -20,15 +20,15 @@ export class AdminCreateCommand {
   private readonly messageService: MessageService = inject(MessageService);
   private readonly http: HttpClient = inject(HttpClient);
 
-  execute(adminParams: {username: string; password: string}): void {
+  execute(adminParams: {adminName: string; password: string}): void {
     this.http.post<AdminCreateResponse>(this.apiUrl, adminParams)
       .subscribe({
         next: (res: AdminCreateResponse) => {
           this.messageService.add({ severity: 'success', summary: 'Successful registration', detail: `${res.message}`, life: 3000 });
           this.adminListCommand.execute();
         },
-        error: () => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Register failed', life: 3000 });
+        error: (err) => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.error}`, life: 3000 });
         }
       })
   }

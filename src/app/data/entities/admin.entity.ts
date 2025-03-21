@@ -8,7 +8,7 @@ export class AdminEntity {
   }
 
   get userName(): string {
-    return this.source.username;
+    return this.source.adminName;
   }
 
   get role(): string {

@@ -14,10 +14,10 @@ import { FormsModule } from '@angular/forms';
 export class LoginComponent {
   private readonly AuthCommand: LoginCommand = inject(LoginCommand);
 
-  username: string = '';
+  adminName: string = '';
   password: string = '';
 
   login(): void {
-    this.AuthCommand.execute(this.username, this.password);
+    this.AuthCommand.execute(this.adminName, this.password);
   }
 }

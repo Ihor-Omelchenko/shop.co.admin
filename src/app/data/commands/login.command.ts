@@ -18,8 +18,8 @@ export class LoginCommand {
   private readonly http: HttpClient = inject(HttpClient);
   private readonly router:Router = inject(Router);
 
-  execute(username: string, password: string): void {
-    this.http.post<LoginResponse>(this.apiUrl, { username, password })
+  execute(adminName: string, password: string): void {
+    this.http.post<LoginResponse>(this.apiUrl, { adminName, password })
       .pipe(
         tap((response: LoginResponse): void => {
           localStorage.setItem('access_token', response.accessToken);

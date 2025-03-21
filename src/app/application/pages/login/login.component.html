@@ -7,7 +7,7 @@
           id="username"
           type="text"
           pInputText
-          [(ngModel)]="username"
+          [(ngModel)]="adminName"
           placeholder="Enter your username"
           class="input-field"
         />
@@ -29,7 +29,7 @@
               type="button"
               label="Login"
               pButton
-              [disabled]="!username || !password"
+              [disabled]="!adminName || !password"
               (click)="login()"
       ></button>
     </div>

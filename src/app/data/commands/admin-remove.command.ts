@@ -8,7 +8,7 @@ type AdminRemoveResponse = { message: string }
 
 @Injectable()
 export class AdminRemoveCommand {
-  private readonly apiUrl: string = `${environment.API_URL}/api/auth/adminRemove`;
+  private readonly apiUrl: string = `${environment.API_URL}/api/admins/remove`;
 
   private readonly adminListCommand: AdminListCommand = inject(AdminListCommand);
 

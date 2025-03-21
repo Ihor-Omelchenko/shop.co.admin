@@ -3,21 +3,23 @@ import { AdminRepository } from '@app/data/repository';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '@libs/environments';
 import { AdminMapper } from '@app/data/mappers';
+import { MessageService } from 'primeng/api';
 import { Pagination } from '@shared/type';
 import { AdminDto } from '@app/data/dto';
 import { finalize, tap } from 'rxjs';
 
 type AdminList = {
   currentPage: number;
-  totalUsers: number;
+  totalAdmins: number;
   totalPages: number;
-  users: Array<AdminDto>;
+  admins: Array<AdminDto>;
 }
 
 @Injectable()
 export class AdminListCommand {
-  private readonly apiUrl = `${environment.API_URL}/api/users`;
+  private readonly apiUrl = `${environment.API_URL}/api/admins`;
 
+  private readonly messageService: MessageService = inject(MessageService);
   private readonly repository: AdminRepository = inject(AdminRepository);
   private readonly http: HttpClient = inject(HttpClient);
 
@@ -34,16 +36,16 @@ export class AdminListCommand {
     this.http.get<AdminList>(this.apiUrl, {params: httpParams})
       .pipe(
         tap((response: AdminList): void => {
-          this.repository.totalRecords.set(response.totalUsers);
-          this.repository.adminList.set(response.users.map(AdminMapper.toAdmin));
+          this.repository.totalRecords.set(response.totalAdmins);
+          this.repository.adminList.set(response.admins.map(AdminMapper.toAdmin));
         }),
         finalize((): void => {
           this.repository.loading.set(false);
         })
       )
       .subscribe({
-        error: (): void => {
-          console.error('Error fetching users:');
+        error: (err): void => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: `${err.error.error}`, life: 3000 });
         }
       });
   }
