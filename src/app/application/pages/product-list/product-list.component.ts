@@ -1,3 +1,4 @@
+import { TableProductsComponent } from '@app/application/features';
 import { Component } from '@angular/core';
 
 @Component({
@@ -5,7 +6,7 @@ import { Component } from '@angular/core';
   standalone: true,
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
-  imports: []
+  imports: [ TableProductsComponent ]
 })
 export class ProductListComponent {
 

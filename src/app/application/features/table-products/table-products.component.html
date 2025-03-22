@@ -1,0 +1,13 @@
+<div class="table-container">
+  <h2 class="title">List of products</h2>
+  <p-divider />
+  <app-products-data-table [totalRecords]="repository.totalRecords()"
+                           [limit]="repository.pagination().limit"
+                           [page]="repository.pagination().page"
+                           [dataList]="repository.productList()"
+                           [loading]="repository.loading()"
+                           [columns]="ProductTableColumns"
+
+                           (pageSetting)="handlePageSetting($event)"
+  />
+</div>
