@@ -2,6 +2,7 @@
          [columns]="selectedColumnsState()"
          [loading]="loading()"
          [value]="dataList()"
+         [selection]="selectedRows()"
          stripedRows
          [scrollable]="true"
          scrollHeight="flex"
@@ -10,31 +11,40 @@
 
   <ng-template pTemplate="caption">
     <div class="caption">
+      <div>
+        <p-multiSelect [ngModel]="selectedColumnsState()"
+                       [style]="{'min-width': '250px'}"
+                       [options]="columns()"
 
-      <p-multiSelect [ngModel]="selectedColumnsState()"
-                     [style]="{'min-width': '250px'}"
-                     [options]="columns()"
+                       selectedItemsLabel="{0} columns selected"
+                       placeholder="Choose Columns"
+                       optionLabel="name"
+                       size="small"
 
-                     selectedItemsLabel="{0} columns selected"
-                     placeholder="Choose Columns"
-                     optionLabel="name"
-                     size="small"
+                       (onChange)="onSelectChange($event)"
+        />
+      </div>
 
-                     (onChange)="onSelectChange($event)"
-      />
+      <div class="actions">
+        @if (selectedRows().length) {
+          <p-button severity="danger" label="Delete" icon="pi pi-trash" size="small" (onClick)="removeProduct()"/>
+        }
 
-      <p-button class="create-button"
-                label="New Product"
-                icon="pi pi-plus"
-                size="small"
+        <p-button class="create-button" label="New Product" icon="pi pi-plus" size="small" [disabled]="selectedRows().length != 0" (onClick)="newProduct()"/>
+      </div>
 
-                (onClick)="newProduct()"
-      />
     </div>
   </ng-template>
 
   <ng-template pTemplate="header" let-columns>
     <tr>
+      <th>
+        <p-checkbox [binary]="true"
+                    [ngModel]="allSelected()"
+                    [disabled]="!dataList().length"
+                    (ngModelChange)="toggleAllRowsHandler($event)">
+        </p-checkbox>
+      </th>
       @for (col of columns; track $index) {
         <th>{{ col.name }}</th>
       }
@@ -43,6 +53,12 @@
 
   <ng-template pTemplate="body" let-rowData let-columns="columns">
     <tr [pSelectableRow]="rowData">
+      <td>
+        <p-checkbox [binary]="true"
+                    [ngModel]="selectedRows().includes(rowData)"
+                    (ngModelChange)="toggleRowSelectionHandler($event, rowData)">
+        </p-checkbox>
+      </td>
       @for (col of columns; track $index) {
         <td class="no-wrap">
           @if (col.field === 'productImage') {
@@ -50,11 +66,14 @@
           } @else if (col.field === 'productPrice') {
             <td>{{ rowData[col.field] | currency: 'USD' }}</td>
           } @else if (col.field === 'productReviews') {
-            <td><p-rating [ngModel]="rowData[col.field]" [readonly]="true" /></td>
+            <td>
+              <p-rating [ngModel]="rowData[col.field]" [readonly]="true"/>
+            </td>
           } @else if (col.field === 'productStatus') {
-            <td><p-tag [severity]="statusSeverity(rowData[col.field])" [value]="rowData[col.field]"/></td>
-          }
-          @else {
+            <td>
+              <p-tag [severity]="statusSeverity(rowData[col.field])" [value]="rowData[col.field]"/>
+            </td>
+          } @else {
             {{ rowData[col.field] }}
           }
         </td>

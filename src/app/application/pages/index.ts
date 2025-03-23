@@ -1,4 +1,15 @@
-export * from './product-list';
+// ------------------------Admin------------------------ //
+
 export * from './admin-list';
+
+// -----------------------Product----------------------- //
+
+export * from './product-list';
+
+// ------------------------User------------------------- //
+
 export * from './user-list';
+
+// ------------------------Other------------------------ //
+
 export * from './login';

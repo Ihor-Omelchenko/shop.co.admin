@@ -7,23 +7,27 @@ import { PaginatorState } from 'primeng/paginator';
 import { ProductTableColumn } from '@shared/type';
 import { statusSeverity } from '@shared/utils';
 import { FormsModule } from '@angular/forms';
-import { Rating } from 'primeng/rating';
-
 
 @Component({
   selector: 'app-products-data-table',
   standalone: true,
   templateUrl: './products-data-table.component.html',
   styleUrl: './products-data-table.component.scss',
-  imports: [ PrimengModules, NgStyle, FormsModule, CurrencyPipe, Rating ]
+  imports: [ PrimengModules, NgStyle, FormsModule, CurrencyPipe ]
 })
 export class ProductsDataTableComponent {
   protected readonly statusSeverity = statusSeverity;
 
-  pageSetting: OutputEmitterRef<{ first: number; rows: number }> = output<{ first: number; rows: number }>();
+  toggleRowSelection = output<{ selected: boolean; rowData: ProductEntity; }>();
+  pageSetting: OutputEmitterRef<{ first: number; rows: number }> = output<{ first: number; rows: number; }>();
+  toggleAllRows = output<{ selected: boolean; }>();
+  createNewProduct: OutputEmitterRef<void> = output();
+  deleteProduct: OutputEmitterRef<void> = output();
 
   columns: InputSignal<Array<ProductTableColumn>> = input.required();
+  selectedRows: InputSignal<Array<ProductEntity>> = input.required();
   dataList: InputSignal<Array<ProductEntity>> = input.required();
+  allSelected: InputSignal<boolean> = input.required();
   totalRecords: InputSignal<number> = input.required();
   loading: InputSignal<boolean> = input.required();
   limit: InputSignal<number> = input.required();
@@ -48,14 +52,25 @@ export class ProductsDataTableComponent {
   }
 
   newProduct(): void {
-
+    this.createNewProduct.emit();
   }
 
+  removeProduct(): void {
+    this.deleteProduct.emit();
+  }
 
   onPageChange(event: PaginatorState): void {
     const page: number = event.page ?? 0;
     const rows: number = event.rows ?? 10;
 
     this.pageSetting.emit({first: page, rows: rows});
+  }
+
+  toggleAllRowsHandler(selected: boolean): void {
+    this.toggleAllRows.emit({selected});
+  }
+
+  toggleRowSelectionHandler(selected: boolean, rowData: ProductEntity): void {
+    this.toggleRowSelection.emit({selected, rowData});
   }
 }

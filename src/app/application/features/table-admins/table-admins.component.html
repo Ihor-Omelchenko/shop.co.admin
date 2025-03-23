@@ -1,7 +1,7 @@
 <div class="table-container">
   <h2 class="title">List of administrators</h2>
   <p-divider />
-  <app-table [totalRecords]="repository.totalRecords()"
+  <app-admin-data-table [totalRecords]="repository.totalRecords()"
              [limit]="repository.pagination().limit"
              [page]="repository.pagination().page"
              [dataList]="repository.adminList()"

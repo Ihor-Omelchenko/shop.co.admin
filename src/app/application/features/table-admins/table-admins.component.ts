@@ -1,18 +1,17 @@
 import { AdminCreateCommand, AdminListCommand, AdminRemoveCommand } from '@app/data/commands';
-import { DialogCreateAdminComponent, TableComponent } from '@app/application/components';
+import { DialogCreateAdminComponent, AdminDataTableComponent } from '@app/application/components';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { AdminTableColumns, PrimengModules } from '@shared/constants';
 import { AdminRepository } from '@app/data/repository';
 import { Component, inject } from '@angular/core';
 import { AdminTableColumn } from '@shared/type';
 
-
 @Component({
   selector: 'app-table-admins',
   standalone: true,
   templateUrl: './table-admins.component.html',
   styleUrl: './table-admins.component.scss',
-  imports: [ TableComponent, PrimengModules ],
+  imports: [ AdminDataTableComponent, PrimengModules ],
   providers: [ AdminListCommand, AdminCreateCommand, AdminRemoveCommand, DialogService ]
 })
 export class TableAdminsComponent {

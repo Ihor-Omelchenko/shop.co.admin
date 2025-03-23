@@ -1,13 +1,19 @@
 <div class="table-container">
   <h2 class="title">List of products</h2>
-  <p-divider />
+  <p-divider/>
   <app-products-data-table [totalRecords]="repository.totalRecords()"
+                           [selectedRows]="repository.selectedRows()"
+                           [allSelected]="repository.allSelected()"
                            [limit]="repository.pagination().limit"
                            [page]="repository.pagination().page"
-                           [dataList]="repository.productList()"
                            [loading]="repository.loading()"
                            [columns]="ProductTableColumns"
+                           [dataList]="data()"
 
+                           (toggleRowSelection)="handleToggleRowSelection($event)"
+                           (toggleAllRows)="handleToggleAllRows($event)"
+                           (createNewProduct)="handleCreateProduct()"
                            (pageSetting)="handlePageSetting($event)"
+                           (deleteProduct)="handleDelete()"
   />
 </div>

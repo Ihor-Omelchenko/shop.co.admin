@@ -19,6 +19,7 @@
 
 p-paginator {
   ::ng-deep .p-overlay {
-    transform: translateY(-245px);
+    position: absolute;
+    top: -210px !important;
   }
 }

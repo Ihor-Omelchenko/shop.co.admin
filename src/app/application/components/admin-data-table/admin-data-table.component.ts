@@ -10,19 +10,19 @@ import { RoleSeverity } from '@shared/utils';
 import { NgStyle } from '@angular/common';
 
 @Component({
-  selector: 'app-table',
+  selector: 'app-admin-data-table',
   standalone: true,
-  templateUrl: './table.component.html',
-  styleUrl: './table.component.scss',
+  templateUrl: './admin-data-table.component.html',
+  styleUrl: './admin-data-table.component.scss',
   imports: [ FormsModule, NgStyle, PrimengModules, DropdownModule ]
 })
-export class TableComponent {
+export class AdminDataTableComponent {
   protected readonly roleSeverity = RoleSeverity;
   protected readonly roleList = roleList;
 
   pageSetting: OutputEmitterRef<{ first: number; rows: number }> = output<{ first: number; rows: number }>()
-  selectRole: OutputEmitterRef<{role: string}> = output();
-  removeAdmin: OutputEmitterRef<{id: string}> = output();
+  selectRole: OutputEmitterRef<{ role: string }> = output();
+  removeAdmin: OutputEmitterRef<{ id: string }> = output();
   createNewAdmin: OutputEmitterRef<void> = output();
 
   columns: InputSignal<Array<AdminTableColumn>> = input.required();
