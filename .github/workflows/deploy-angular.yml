@@ -33,4 +33,31 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            /root/deploy-angular.sh ${{ github.event.inputs.branch }} ${{ github.event.inputs.environment }}
+            ENV=${{ github.event.inputs.environment }}
+            BRANCH=${{ github.event.inputs.branch }}
+
+            if [ "$ENV" = "prod" ]; then
+              API_URL="${{ secrets.PROD_API_URL }}"
+            else
+              API_URL="${{ secrets.DEV_API_URL }}"
+            fi
+
+            echo "Creating environment file for $ENV..."
+            ENV_FILE_PATH="/root/projects/angular-frontend/src/environments"
+            mkdir -p $ENV_FILE_PATH
+
+            if [ "$ENV" = "prod" ]; then
+              ENV_FILENAME="environment.prod.ts"
+            else
+              ENV_FILENAME="environment.ts"
+            fi
+
+            cat <<EOF > $ENV_FILE_PATH/$ENV_FILENAME
+            export const environment = {
+              production: ${ENV == "prod" && "true" || "false"},
+              API_URL: '$API_URL'
+            };
+            EOF
+
+            echo "Running deploy script..."
+            /root/deploy-angular.sh $BRANCH $ENV
