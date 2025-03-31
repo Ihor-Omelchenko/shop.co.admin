@@ -47,7 +47,7 @@ jobs:
             fi
 
             echo "📁 Creating environment file: $ENV_FILENAME"
-            ENV_FILE_PATH="/root/projects/angular-frontend/src/environments"
+            ENV_FILE_PATH="/root/projects/angular-frontend/src/libs/environments"
             mkdir -p "$ENV_FILE_PATH"
 
             cat > "$ENV_FILE_PATH/$ENV_FILENAME" <<EOF
