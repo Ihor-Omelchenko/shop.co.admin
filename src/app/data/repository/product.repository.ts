@@ -4,6 +4,7 @@ import { Pagination } from '@shared/type';
 
 @Injectable({providedIn: 'root'})
 export class ProductRepository {
+  readeProduct: WritableSignal<ProductEntity | null> = signal(null);
   productList: WritableSignal<Array<ProductEntity>> = signal([]);
 
   pagination: WritableSignal<Pagination> = signal({page: 0, limit: 15});

@@ -1,10 +1,13 @@
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { patchProductForm, productCreateForm } from "@shared/utils/product";
 import { categories, PrimengModules, statuses } from '@shared/constants';
+import { Component, effect, inject, OnDestroy } from '@angular/core';
 import { FileUploadHandlerEvent } from 'primeng/fileupload';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
-import { Component, inject } from '@angular/core';
+import { ProductRepository } from "@app/data/repository";
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@libs/environments';
+import { ProductEntity } from '@app/data/entities';
 
 @Component({
   selector: 'app-dialog-product-details',
@@ -13,11 +16,13 @@ import { environment } from '@libs/environments';
   styleUrl: './dialog-product-details.component.scss',
   imports: [ PrimengModules, FormsModule, ReactiveFormsModule ]
 })
-export class DialogProductDetailsComponent {
+export class DialogProductDetailsComponent implements OnDestroy {
+  private readonly repository: ProductRepository = inject(ProductRepository);
+
   private readonly ref: DynamicDialogRef = inject(DynamicDialogRef);
   private readonly fb: FormBuilder = inject(FormBuilder);
 
-  private http: HttpClient = inject(HttpClient)
+  private readonly http: HttpClient = inject(HttpClient)
 
   protected readonly categories = categories;
   protected readonly statuses = statuses;
@@ -26,16 +31,19 @@ export class DialogProductDetailsComponent {
   form!: FormGroup;
 
   constructor() {
-    this.form = this.fb.group({
-      title: [ '', Validators.required ],
-      description: [ '', Validators.required ],
-      status: [ null, Validators.required ],
-      category: [ '', Validators.required ],
-      reviews: [ 0 ],
-      price: [ null, Validators.required ],
-      quantity: [ null, Validators.required ],
-      imageId: [ '', Validators.required ]
-    });
+    this.form = productCreateForm(this.fb);
+
+    effect((): void => {
+      const product: ProductEntity | null = this.repository.readeProduct();
+      if (product) {
+        patchProductForm(this.form, product);
+        this.preview = product.productImage;
+      }
+    }, {allowSignalWrites: true});
+  }
+
+  ngOnDestroy(): void {
+    this.repository.readeProduct.set(null);
   }
 
   onSave(): void {
@@ -61,7 +69,13 @@ export class DialogProductDetailsComponent {
     this.http.post<{ fileId: string }>(`${environment.API_URL}/api/images/upload`, formData)
       .subscribe({
         next: (res): void => {
-          this.form.get('imageId')?.setValue(res.fileId);
+          const isEditMode: boolean = !!this.repository.readeProduct();
+
+          if (isEditMode) {
+            this.form.get('imageUrl')?.setValue(`/api/images/${res.fileId}`);
+          } else {
+            this.form.get('imageId')?.setValue(res.fileId);
+          }
         }
       });
   }

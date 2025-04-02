@@ -1,8 +1,9 @@
+import { ProductCreateCommand, ProductDeleteCommand, ProductListCommand, ProductReadeCommand, ProductUpdateCommand } from '@app/data/commands';
 import { DialogProductDetailsComponent, ProductsDataTableComponent } from '@app/application/components';
-import { ProductCreateCommand, ProductDeleteCommand, ProductListCommand } from '@app/data/commands';
 import { PrimengModules, ProductTableColumns } from '@shared/constants';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Component, computed, inject, Signal } from '@angular/core';
+import { ProductCreateDto, ProductUpdateDto } from '@app/data/dto';
 import { ProductRepository } from '@app/data/repository';
 import { ProductEntity } from '@app/data/entities';
 import { ProductTableColumn } from '@shared/type';
@@ -13,11 +14,13 @@ import { ProductTableColumn } from '@shared/type';
   templateUrl: './table-products.component.html',
   styleUrl: './table-products.component.scss',
   imports: [ ProductsDataTableComponent, PrimengModules ],
-  providers: [ ProductListCommand, ProductCreateCommand, ProductDeleteCommand, DialogService ]
+  providers: [ ProductListCommand, ProductCreateCommand, ProductDeleteCommand, ProductReadeCommand, ProductUpdateCommand, DialogService ]
 })
 export class TableProductsComponent {
   private readonly productDeleteCommand: ProductDeleteCommand = inject(ProductDeleteCommand);
   private readonly productCreateCommand: ProductCreateCommand = inject(ProductCreateCommand);
+  private readonly productUpdateCommand: ProductUpdateCommand = inject(ProductUpdateCommand);
+  private readonly productReadeCommand: ProductReadeCommand = inject(ProductReadeCommand);
   private readonly productListCommand: ProductListCommand = inject(ProductListCommand);
 
   protected readonly repository: ProductRepository = inject(ProductRepository);
@@ -45,9 +48,13 @@ export class TableProductsComponent {
       header: 'Product Details',
       closable: true,
       modal: true,
+      style: {
+        width: '75vw',
+        'min-width': '50vw',
+      }
     });
 
-    ref.onClose.subscribe((data): void => {
+    ref.onClose.subscribe((data: ProductCreateDto): void => {
       if (data) {
         this.productCreateCommand.execute(data);
       }
@@ -75,5 +82,25 @@ export class TableProductsComponent {
 
     this.repository.allSelected.set(false);
     this.repository.selectedRows.set([]);
+  }
+
+  handleEditProduct(event: { productId: string }): void {
+    this.productReadeCommand.execute(event.productId);
+
+    const ref: DynamicDialogRef = this.dialogService.open(DialogProductDetailsComponent, {
+      header: 'Product Update',
+      closable: true,
+      modal: true,
+      style: {
+        width: '75vw',
+        'min-width': '50vw',
+      }
+    });
+
+    ref.onClose.subscribe((data: ProductUpdateDto): void => {
+      if (data) {
+        this.productUpdateCommand.execute(data);
+      }
+    });
   }
 }

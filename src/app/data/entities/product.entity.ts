@@ -32,6 +32,10 @@ export class ProductEntity {
     return this.source.price;
   }
 
+  get productQuantity(): number {
+    return this.source.quantity;
+  }
+
   get productImage(): string {
     return environment.API_URL + this.source.imageUrl;
   }

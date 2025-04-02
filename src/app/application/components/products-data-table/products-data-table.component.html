@@ -48,6 +48,7 @@
       @for (col of columns; track $index) {
         <th>{{ col.name }}</th>
       }
+      <th></th>
     </tr>
   </ng-template>
 
@@ -78,6 +79,9 @@
           }
         </td>
       }
+      <td>
+        <p-button icon="pi pi-check" [rounded]="true" [outlined]="true" (onClick)="productEdit(rowData)"/>
+      </td>
     </tr>
   </ng-template>
 

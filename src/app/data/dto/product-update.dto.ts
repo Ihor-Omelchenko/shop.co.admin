@@ -1,4 +1,4 @@
-export type ProductDto = {
+export type ProductUpdateDto = {
   _id: string;
   title: string;
   category: string;
@@ -6,9 +6,5 @@ export type ProductDto = {
   status: string;
   description: string;
   price: number;
-  quantity: number;
   imageUrl: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
 }

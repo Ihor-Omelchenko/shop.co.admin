@@ -20,6 +20,7 @@ export class ProductsDataTableComponent {
 
   toggleRowSelection = output<{ selected: boolean; rowData: ProductEntity; }>();
   pageSetting: OutputEmitterRef<{ first: number; rows: number }> = output<{ first: number; rows: number; }>();
+  product: OutputEmitterRef<{ productId: string; }> = output<{ productId: string; }>();
   toggleAllRows = output<{ selected: boolean; }>();
   createNewProduct: OutputEmitterRef<void> = output();
   deleteProduct: OutputEmitterRef<void> = output();
@@ -72,5 +73,9 @@ export class ProductsDataTableComponent {
 
   toggleRowSelectionHandler(selected: boolean, rowData: ProductEntity): void {
     this.toggleRowSelection.emit({selected, rowData});
+  }
+
+  productEdit(event: ProductEntity): void {
+    this.product.emit({productId: event.productId})
   }
 }
