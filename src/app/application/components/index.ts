@@ -1,9 +1,9 @@
 // ------------------------Admin------------------------ //
 
-export * from './dialog-create-admin/dialog-create-admin.component';
-export * from './admin-data-table/admin-data-table.component';
+export * from '@components/form-admin/form-admin.component';
+export * from '@components/table-admin/table-admin.component';
 
 // -----------------------Product----------------------- //
 
-export * from './dialog-product-details/dialog-product-details.component';
-export * from './products-data-table/products-data-table.component';
+export * from '@components/form-product/form-product.component';
+export * from '@components/table-product/table-product.component';

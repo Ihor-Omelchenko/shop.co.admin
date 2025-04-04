@@ -1,15 +1,15 @@
 // ------------------------Admin------------------------ //
 
-export * from './admin-list';
+export * from './page-admin';
 
 // -----------------------Product----------------------- //
 
-export * from './product-list';
+export * from './page-product';
 
 // ------------------------User------------------------- //
 
-export * from './user-list';
+export * from './page-user';
 
 // ------------------------Other------------------------ //
 
-export * from './login';
+export * from './page-login';

@@ -1,4 +1,4 @@
-<div class="card">
+<p-card>
   <p-toolbar>
 
     <ng-template #start>
@@ -6,21 +6,21 @@
         <a pButton pRipple class="logo">
           <i class="pi pi-prime"></i>
         </a>
-        <a pButton pRipple [routerLink]="'/dashboard'" routerLinkActive="active" pTooltip="Оverview"
+        <a pButton pRipple [routerLink]="'/dashboard'" routerLinkActive="active" pTooltip="Dashboard"
            tooltipPosition="right" class="nav-btn">
-          <i class="pi pi-home"></i>
+          <i class="pi pi-chart-bar"></i>
         </a>
-        <a pButton pRipple [routerLink]="'/product-list'" routerLinkActive="active" pTooltip="List of products"
+        <a pButton pRipple [routerLink]="'/page-product'" routerLinkActive="active" pTooltip="List of products"
            tooltipPosition="right" class="nav-btn">
-          <i class="pi pi-list"></i>
+          <i class="pi pi-box"></i>
         </a>
-        <a pButton pRipple [routerLink]="'/user-list'" routerLinkActive="active" pTooltip="List of users"
+        <a pButton pRipple [routerLink]="'/page-user'" routerLinkActive="active" pTooltip="List of users"
            tooltipPosition="right" class="nav-btn">
           <i class="pi pi-users"></i>
         </a>
-        <a pButton pRipple [routerLink]="'/admin-list'" routerLinkActive="active" pTooltip="List of administrators"
+        <a pButton pRipple [routerLink]="'/page-admin'" routerLinkActive="active" pTooltip="List of administrators"
            tooltipPosition="right" class="nav-btn">
-          <i class="pi pi-inbox"></i>
+          <i class="pi pi-id-card"></i>
         </a>
       </div>
     </ng-template>
@@ -32,4 +32,4 @@
     </ng-template>
 
   </p-toolbar>
-</div>
+</p-card>

@@ -1,0 +1,15 @@
+<p-divider/>
+<app-table-admin [totalRecords]="repository.totalRecords()"
+                 [limit]="repository.pagination().limit"
+                 [page]="repository.pagination().page"
+                 [dataList]="repository.adminList()"
+                 [loading]="repository.loading()"
+                 [columns]="AdminTableColumns"
+
+                 (pageSetting)="handlePageSetting($event)"
+                 (removeAdmin)="handleRemoveAdmin($event)"
+                 (selectRole)="handleSelectRole($event)"
+                 (createNewAdmin)="handleCreateAdmin()"
+/>
+
+

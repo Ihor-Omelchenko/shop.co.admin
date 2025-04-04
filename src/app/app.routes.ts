@@ -1,24 +1,23 @@
-import { AdminListComponent, LoginComponent, ProductListComponent, UserListComponent } from '@app/application/pages';
-import { authGuard } from '@app/application/providers/guards/auth.guard';
+import { PageAdminComponent, LoginComponent, PageProductComponent, PageUserComponent } from '@app/application/pages';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'product-list',
+    redirectTo: 'page-product',
     pathMatch: 'full'
   },
   {
-    path: 'product-list',
-    component: ProductListComponent
+    path: 'page-product',
+    component: PageProductComponent
   },
   {
-    path: 'admin-list',
-    component: AdminListComponent
+    path: 'page-admin',
+    component: PageAdminComponent
   },
   {
-    path: 'user-list',
-    component: UserListComponent
+    path: 'page-user',
+    component: PageUserComponent
   },
   {
     path: 'login',

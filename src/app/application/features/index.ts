@@ -1,12 +1,12 @@
 // ------------------------Admin------------------------ //
 
-export * from './table-admins/table-admins.component';
+export * from '@features/list-admin/list-admin.component';
 
 // -----------------------Product----------------------- //
 
-export * from './table-products/table-products.component';
+export * from '@features/list-product/list-product.component';
 
 // ------------------------Other------------------------ //
 
-export * from './login-window/login-window.component';
+export * from '@features/card-login/card-login.component';
 export * from './side-nav/side-nav.component';
