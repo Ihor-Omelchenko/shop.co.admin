@@ -1,23 +1,13 @@
-import { PrimengModules } from '@shared/constants';
-import { Component, inject } from '@angular/core';
-import { LoginCommand } from '@app/data/commands';
-import { FormsModule } from '@angular/forms';
+import { LoginWindowComponent } from '@app/application/features';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
-  imports: [ FormsModule, PrimengModules ],
-  providers: [ LoginCommand ]
+  imports: [ LoginWindowComponent ]
 })
 export class LoginComponent {
-  private readonly AuthCommand: LoginCommand = inject(LoginCommand);
 
-  adminName: string = '';
-  password: string = '';
-
-  login(): void {
-    this.AuthCommand.execute(this.adminName, this.password);
-  }
 }

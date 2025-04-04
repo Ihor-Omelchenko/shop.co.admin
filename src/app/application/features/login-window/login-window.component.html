@@ -1,0 +1,35 @@
+<div class="login-container">
+  <p-card header="Login" class="login-card">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="username">Username</label>
+        <input [(ngModel)]="adminName"
+
+               placeholder="Enter your username"
+               class="input-field"
+               id="username"
+               type="text"
+               pInputText
+        />
+      </div>
+
+      <div class="p-field">
+        <label for="password">Password</label>
+        <input [(ngModel)]="password"
+
+               placeholder="Enter your password"
+               class="input-field"
+               id="password"
+               type="password"
+               pInputText
+        />
+      </div>
+
+      <p-button [disabled]="!adminName || !password"
+                label="Login"
+
+                (click)="login()"
+      />
+    </div>
+  </p-card>
+</div>
