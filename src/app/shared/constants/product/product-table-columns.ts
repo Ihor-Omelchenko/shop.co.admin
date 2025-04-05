@@ -7,62 +7,69 @@ export const ProductTableColumns: Array<ProductTableColumn> = [
     name: 'ID',
     isActive: false,
     order: 1,
-    value: (data: ProductEntity) => data.productId
+    value: (data: ProductEntity): string => data.productId
   },
   {
     field: 'productName',
     name: 'Title',
     isActive: false,
     order: 2,
-    value: (data: ProductEntity) => data.productName
+    value: (data: ProductEntity): string => data.productName
   },
   {
     field: 'productImage',
     name: 'Image',
     isActive: false,
     order: 3,
-    value: (data: ProductEntity) => data.productImage
+    value: (data: ProductEntity): string => data.productImage
   },
   {
     field: 'productPrice',
     name: 'Price',
     isActive: false,
     order: 4,
-    value: (data: ProductEntity) => data.productPrice
+    value: (data: ProductEntity): number => data.productPrice
   },
   {
     field: 'productCategory',
     name: 'Category',
     isActive: false,
     order: 5,
-    value: (data: ProductEntity) => data.productCategory
+    value: (data: ProductEntity): string => data.productCategory
   },
   {
-    field: 'productReviews',
-    name: 'Reviews',
+    field: 'productPetType',
+    name: 'Pet Type',
     isActive: false,
     order: 6,
-    value: (data: ProductEntity) => data.productReviews
+    value: (data: ProductEntity): string => data.productPetType
+  },
+  {
+    field: 'productQuantity',
+    name: 'Quantity',
+    isActive: false,
+    order: 7,
+    value: (data: ProductEntity): number => data.productQuantity
   },
   {
     field: 'productStatus',
     name: 'Status',
     isActive: false,
-    order: 7,
-    value: (data: ProductEntity) => data.productStatus
+    order: 8,
+    value: (data: ProductEntity): string => data.productStatus
   },
   {
     field: 'productCreateDate',
     name: 'Create Date',
     isActive: false,
-    order: 8,
-    value: (data: ProductEntity) => data.productCreateDate
+    order: 9,
+    value: (data: ProductEntity): string => data.productCreateDate
   },
   {
     field: 'productUpdateDate',
     name: 'Update Date',
     isActive: false,
-    order: 9,
-    value: (data: ProductEntity) => data.productUpdateDate
+    order: 10,
+    value: (data: ProductEntity): string => data.productUpdateDate
   }
 ]
