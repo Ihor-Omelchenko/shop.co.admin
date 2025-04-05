@@ -1,10 +1,11 @@
 import { ProductCreateCommand, ProductDeleteCommand, ProductListCommand, ProductReadeCommand, ProductUpdateCommand } from '@app/data/commands';
 import { FormProductComponent, TableProductComponent } from '@app/application/components';
-import { PrimengModules, ProductTableColumns } from '@shared/constants';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Component, computed, inject, Signal } from '@angular/core';
 import { ProductCreateDto, ProductUpdateDto } from '@app/data/dto';
+import { ProductTableColumns } from '@shared/constants/product';
 import { ProductRepository } from '@app/data/repository';
+import { PrimengModules } from '@shared/constants';
 import { ProductEntity } from '@app/data/entities';
 import { ProductTableColumn } from '@shared/type';
 
@@ -103,5 +104,15 @@ export class ListProductComponent {
         this.productUpdateCommand.execute(data);
       }
     });
+  }
+
+  handleCategory(event: { category: string }): void {
+    this.repository.selectCategory.set(event.category);
+    this.productListCommand.execute();
+  }
+
+  handlePetType(event: { petType: string }): void {
+   this.repository.selectPetType.set(event.petType);
+    this.productListCommand.execute();
   }
 }

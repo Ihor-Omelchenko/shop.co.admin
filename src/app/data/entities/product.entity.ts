@@ -16,6 +16,10 @@ export class ProductEntity {
     return this.source.category;
   }
 
+  get productPetType(): string {
+    return this.source.petType;
+  }
+
   get productReviews(): number {
     return this.source.reviews;
   }

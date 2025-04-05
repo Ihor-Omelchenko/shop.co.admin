@@ -13,4 +13,7 @@ export class ProductRepository {
 
   selectedRows: WritableSignal<Array<ProductEntity>> = signal([]);
   allSelected: WritableSignal<boolean> = signal(false);
+
+  selectCategory: WritableSignal<string> = signal('all');
+  selectPetType: WritableSignal<string> = signal('all');
 }

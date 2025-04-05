@@ -11,7 +11,7 @@
 
   <ng-template pTemplate="caption">
     <div class="caption">
-      <div>
+      <div class="filter">
         <p-multiSelect [ngModel]="selectedColumnsState()"
                        [style]="{'min-width': '250px'}"
                        [options]="columns()"
@@ -22,6 +22,28 @@
                        size="small"
 
                        (onChange)="onSelectChange($event)"
+        />
+
+        <p-dropdown [style]="{'min-width': '200px', 'height': '33px', 'font-size': '0.875rem', 'display': 'flex', 'align-items': 'center'}"
+                    [options]="categoryOptions"
+                    [ngModel]="'all'"
+
+                    optionValue="value"
+                    optionLabel="label"
+                    placeholder="Selected category"
+
+                    (onChange)="onSelectCategoriesChange($event)"
+        />
+
+        <p-dropdown [style]="{'min-width': '200px', 'height': '33px', 'font-size': '0.875rem', 'display': 'flex', 'align-items': 'center'}"
+                    [options]="petTypeOptions"
+                    [ngModel]="'all'"
+
+                    optionValue="value"
+                    optionLabel="label"
+                    placeholder="Selected pet type"
+
+                    (onChange)="onSelectPetTypeChange($event)"
         />
       </div>
 

@@ -6,6 +6,7 @@ export function productCreateForm(fb: FormBuilder): FormGroup {
     description: ['', Validators.required],
     status: [null, Validators.required],
     category: ['', Validators.required],
+    petType: ['', Validators.required],
     reviews: [0],
     price: [null, Validators.required],
     quantity: [null, Validators.required],

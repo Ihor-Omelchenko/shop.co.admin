@@ -1,13 +1,14 @@
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { patchProductForm, productCreateForm } from "@shared/utils/product";
-import { categories, PrimengModules, statuses } from '@shared/constants';
+import { patchProductForm, productCreateForm } from '@shared/utils/product';
+import { categories, petType, statuses } from '@shared/constants/product';
 import { Component, effect, inject, OnDestroy } from '@angular/core';
 import { FileUploadHandlerEvent } from 'primeng/fileupload';
 import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ProductRepository } from "@app/data/repository";
+import { ProductEntity } from '@app/data/entities';
+import { PrimengModules } from '@shared/constants';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@libs/environments';
-import { ProductEntity } from '@app/data/entities';
 
 @Component({
   selector: 'app-form-product',
@@ -22,10 +23,11 @@ export class FormProductComponent implements OnDestroy {
   private readonly ref: DynamicDialogRef = inject(DynamicDialogRef);
   private readonly fb: FormBuilder = inject(FormBuilder);
 
-  private readonly http: HttpClient = inject(HttpClient)
+  private readonly http: HttpClient = inject(HttpClient);
 
   protected readonly categories = categories;
   protected readonly statuses = statuses;
+  protected readonly petType = petType
 
   preview: string | ArrayBuffer | null = null;
   form!: FormGroup;

@@ -1,6 +1,8 @@
 import { Component, effect, input, InputSignal, output, OutputEmitterRef, signal, WritableSignal } from '@angular/core';
+import { categories, petType } from '@shared/constants/product';
 import { MultiSelectChangeEvent } from 'primeng/multiselect';
 import { CurrencyPipe, NgStyle } from '@angular/common';
+import { DropdownChangeEvent } from 'primeng/dropdown';
 import { ProductEntity } from '@app/data/entities';
 import { PrimengModules } from '@shared/constants';
 import { PaginatorState } from 'primeng/paginator';
@@ -20,8 +22,10 @@ export class TableProductComponent {
 
   toggleRowSelection = output<{ selected: boolean; rowData: ProductEntity; }>();
   pageSetting: OutputEmitterRef<{ first: number; rows: number }> = output<{ first: number; rows: number; }>();
+  toggleAllRows: OutputEmitterRef<{ selected: boolean; }> = output<{ selected: boolean; }>();
+  selectCategory: OutputEmitterRef<{ category: string; }> =  output<{ category: string; }>();
+  selectPetType: OutputEmitterRef<{ petType: string; }> =  output<{ petType: string; }>();
   product: OutputEmitterRef<{ productId: string; }> = output<{ productId: string; }>();
-  toggleAllRows = output<{ selected: boolean; }>();
   createNewProduct: OutputEmitterRef<void> = output();
   deleteProduct: OutputEmitterRef<void> = output();
 
@@ -77,5 +81,21 @@ export class TableProductComponent {
 
   productEdit(event: ProductEntity): void {
     this.product.emit({productId: event.productId})
+  }
+
+  get categoryOptions(): Array<{ value: string, label: string }> {
+    return [{ value: 'all', label: 'All category' }, ...categories];
+  }
+
+  get petTypeOptions(): Array<{ value: string, label: string }> {
+    return [{ value: 'all', label: 'All pet' }, ...petType];
+  }
+
+  onSelectCategoriesChange(event: DropdownChangeEvent): void {
+    this.selectCategory.emit({category: event.value});
+  }
+
+  onSelectPetTypeChange(event: DropdownChangeEvent): void {
+    this.selectPetType.emit({petType: event.value});
   }
 }

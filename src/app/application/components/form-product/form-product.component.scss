@@ -1,0 +1,53 @@
+.form-product {
+  display: flex;
+
+  .preview-container {
+    flex: 1;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    .preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+
+      img {
+        max-width: 31rem;
+      }
+    }
+  }
+
+  .field-container {
+    flex: 1;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+
+    .field-group {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+
+    .field {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .form-product {
+    flex-direction: column;
+
+    .field-container {
+
+      .field-group {
+        flex-direction: column;
+      }
+    }
+  }
+}

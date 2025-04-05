@@ -30,7 +30,9 @@ export class ProductListCommand {
     const httpParams = new HttpParams({
       fromObject: {
         page: pagination.page + 1,
-        limit: pagination.limit
+        limit: pagination.limit,
+        ...(this.repository.selectCategory() !== 'all' && { category: this.repository.selectCategory() }),
+        ...(this.repository.selectPetType() !== 'all' && { petType: this.repository.selectPetType() })
       }
     });
 

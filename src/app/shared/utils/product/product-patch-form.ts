@@ -16,7 +16,8 @@ export function patchProductForm(form: FormGroup, product: ProductEntity): void 
     reviews: product.productReviews,
     price: product.productPrice,
     quantity: product.productQuantity,
-    imageUrl: product.productImage
+    imageUrl: product.productImage,
+    petType: product.productPetType
   });
 
   form.get('imageId')?.clearValidators();

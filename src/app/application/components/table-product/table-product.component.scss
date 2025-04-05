@@ -3,6 +3,12 @@
   align-items: center;
   gap: 10px;
   justify-content: space-between;
+
+  .filter {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
 }
 
 .image {

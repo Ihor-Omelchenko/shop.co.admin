@@ -2,6 +2,7 @@ export type ProductDto = {
   _id: string;
   title: string;
   category: string;
+  petType: string;
   reviews: number;
   status: string;
   description: string;
