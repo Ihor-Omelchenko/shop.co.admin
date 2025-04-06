@@ -1,12 +1,14 @@
 // ------------------------Admin------------------------ //
 
-export * from '@features/list-admin/list-admin.component';
+export * from './list-admin/list-admin.component';
 
 // -----------------------Product----------------------- //
 
-export * from '@features/list-product/list-product.component';
+export * from './list-product/list-product.component';
 
 // ------------------------Other------------------------ //
 
-export * from '@features/card-login/card-login.component';
+export * from './card-login/card-login.component';
+export * from './chart-pie/chart-pie.component';
+export * from './chart-bar/chart-bar.component';
 export * from './side-nav/side-nav.component';

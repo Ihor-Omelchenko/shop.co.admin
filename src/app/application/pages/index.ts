@@ -12,4 +12,5 @@ export * from './page-user';
 
 // ------------------------Other------------------------ //
 
+export  * from './page-dashboard'
 export * from './page-login';

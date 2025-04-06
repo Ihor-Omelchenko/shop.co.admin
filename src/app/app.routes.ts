@@ -1,11 +1,15 @@
-import { PageAdminComponent, LoginComponent, PageProductComponent, PageUserComponent } from '@app/application/pages';
+import { PageAdminComponent, LoginComponent, PageProductComponent, PageUserComponent, PageDashboardComponent } from '@app/application/pages';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'page-product',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
+    component: PageDashboardComponent,
   },
   {
     path: 'page-product',

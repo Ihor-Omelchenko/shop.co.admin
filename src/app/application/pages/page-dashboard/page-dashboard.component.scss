@@ -1,0 +1,77 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+::ng-deep p-card {
+  .p-card {
+    height: 100%;
+
+    .p-card-body {
+      height: 100%;
+
+      .p-card-content {
+        height: 100%;
+      }
+    }
+  }
+}
+
+
+.dashboard-header {
+  &__intro {
+    margin-bottom: 10px;
+
+    p {
+      margin: 0;
+    }
+
+    .info {
+      color: #97979c;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+}
+
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 58px);
+  gap: 1rem;
+
+  .border {
+    padding: 10px;
+    border-radius: 12px;
+    border: 2px solid #c9c9c924;
+  }
+
+  &__row {
+    flex: 1;
+    min-height: 0;
+
+    &--horizontal {
+      display: flex;
+      gap: 1rem;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+    }
+  }
+
+  &__cell {
+    flex: 1;
+    min-height: 0;
+    border: 1px solid transparent;
+  }
+
+  &__chart {
+    height: 100%;
+    width: 100%;
+    display: block;
+  }
+}
