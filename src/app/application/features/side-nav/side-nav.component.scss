@@ -29,14 +29,7 @@
   padding: 0.5rem;
   border-radius: 0.75rem;
   background: none;
-
-  &:hover {
-    color: #64748b !important;
-    background: none !important;
-    border-color: #cbd5e1;
-    cursor: default;
-
-  }
+  border: none;
 
   i {
     font-size: 2rem;

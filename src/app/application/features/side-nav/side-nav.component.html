@@ -3,9 +3,9 @@
 
     <ng-template #start>
       <div class="nav-items">
-        <a pButton pRipple class="logo">
-          <i class="pi pi-prime"></i>
-        </a>
+        <div class="logo">
+          <img style="width: 48px" src="/assets/logo.png" alt="ShopCo" class="logo-img" />
+        </div>
         <a pButton pRipple [routerLink]="'/dashboard'" routerLinkActive="active" pTooltip="Dashboard"
            tooltipPosition="right" class="nav-btn">
           <i class="pi pi-chart-bar"></i>
