@@ -57,7 +57,6 @@ export class ListProductComponent {
 
     ref.onClose.subscribe((data: ProductCreateDto): void => {
       if (data) {
-        console.log('7')
         this.productCreateCommand.execute(data);
       }
     });
